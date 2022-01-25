@@ -63,10 +63,10 @@ public class TicTacToeGame {
     * @param columns
     *  the number of columns in the game
   	*/
-	public TicTacToeGame(int lines, int columns){
-		// your code here
-		// 3 because of the cells
-		this(lines, columns, 3);
+		public TicTacToeGame(int lines, int columns){
+			// your code here
+			// 3 because of the cells
+			this(lines, columns, 3);
 		
 	}
 
@@ -87,10 +87,10 @@ public class TicTacToeGame {
 		this.lines = lines;
 		this.columns=columns;
 		this.sizeWin = sizeWin;
-		int numberOfTics = columns * lines;
-		for (int i = 0; i < numberOfTics; i++){
-			board = new CellValue[numberOfTics];
-			board[i] = ;
+		int numberOfboxes = columns * lines;
+		for (int i = 0; i < numberOfboxes; i++){
+			board = new CellValue[numberOfboxes];
+			board[i] = CellValue.EMPTY;
 
 		}
 
