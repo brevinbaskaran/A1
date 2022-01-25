@@ -11,7 +11,7 @@ public enum CellValue {
 
     EMPTY, // cell is empty
     X,      // cell is filled with X
-    O       // cell is filled with O
+    O       
 
 // your code here
 // put the code here
