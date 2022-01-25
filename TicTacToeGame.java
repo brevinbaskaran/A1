@@ -88,6 +88,7 @@ public class TicTacToeGame {
 		this.columns=columns;
 		this.sizeWin = sizeWin;
 		int numberOfboxes = columns * lines;
+		//board = new CellValue[numberOfboxes];
 		for (int i = 0; i < numberOfboxes; i++){
 			board = new CellValue[numberOfboxes];
 			board[i] = CellValue.EMPTY;
