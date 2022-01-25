@@ -8,6 +8,7 @@
 // compare this file with GameState and add the following cell values 	EMPTY, X, O
 
 public enum CellValue {
+
 // your code here
     EMPTY, // cell is empty
     X,      // cell is filled with X
