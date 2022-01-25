@@ -108,6 +108,7 @@ public class TicTacToeGame {
 	*/
 	public int getLines(){
 		// your code here
+		return lines;
 	}
 
    /**
@@ -117,6 +118,8 @@ public class TicTacToeGame {
 	*/
 	public int getColumns(){
 		// your code here
+		return columns;
+
 	}
 
    /**
@@ -126,6 +129,7 @@ public class TicTacToeGame {
 	*/
 	public int getLevel(){
 		// your code here
+		return level;
 	}
 
 
@@ -136,6 +140,7 @@ public class TicTacToeGame {
 	*/
 	public GameState getGameState(){
 		// your code here
+		return gameState;
 	}
 
    /**
@@ -145,6 +150,7 @@ public class TicTacToeGame {
 	*/
 	public int getSizeWin(){
 		// your code here
+		return sizeWin;
 	}
 
    /**
@@ -159,6 +165,21 @@ public class TicTacToeGame {
   	*/
 	public CellValue nextCellValue(){
 		// your code here
+		
+		// level is the number of turns played, and based on assignment file game starts with x 
+		// based on info level starts at 0, so odd -> O's turn and even -> X's turn
+
+		if ( level % 2 == 0){ 		// if the turn counter (level) is even then O is the next turn so O is returned
+			
+			level ++; // not sure abt this yet --> CHECK 
+			return CellValue.O;
+		}
+		else {   					// if the turn counter (level) is even then O is the next turn so O is returned
+			
+			level ++; // not sure abt this yet --> CHECK 
+			return CellValue.X;
+		}
+		
 	}
 
    /**
