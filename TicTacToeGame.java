@@ -88,13 +88,14 @@ public class TicTacToeGame {
 		this.columns=columns;
 		this.sizeWin = sizeWin;
 		int numberOfboxes = columns * lines;
+		level = 0;
+	
 		//board = new CellValue[numberOfboxes];
 		for (int i = 0; i < numberOfboxes; i++){
-			board = new CellValue[numberOfboxes];
+			//board = new CellValue[numberOfboxes];
 			board[i] = CellValue.EMPTY;
 
 		}
-
 
 
 	}
@@ -171,12 +172,12 @@ public class TicTacToeGame {
 
 		if ( level % 2 == 0){ 		// if the turn counter (level) is even then O is the next turn so O is returned
 			
-			level ++; // not sure abt this yet --> CHECK 
+			//level ++; // not sure abt this yet --> CHECK 
 			return CellValue.O;
 		}
 		else {   					// if the turn counter (level) is even then O is the next turn so O is returned
 			
-			level ++; // not sure abt this yet --> CHECK 
+			//level ++; // not sure abt this yet --> CHECK 
 			return CellValue.X;
 		}
 		
@@ -193,7 +194,9 @@ public class TicTacToeGame {
     *  the value at index i in the variable board.
   	*/
 	public CellValue valueAt(int i) {
-		// your code here
+		int numberOfCells = lines*columns; 
+		if (i <0 || i > numberOfCells) System.out.println("Position" + i + " not in boards");
+		else return board[i];
 	}
 
    /**
@@ -216,6 +219,23 @@ public class TicTacToeGame {
 	public void play(int i) {
 
 		// your code here
+		int numberOfCells = lines*columns; 
+		if (i <0 || i > numberOfCells) System.out.println("Position" + i + " not in boards");
+		if (board[i] != CellValue.EMPTY) System.out.println("Position" + i + " is already filled");
+
+		if (board[i] == CellValue.EMPTY) {
+			level++; //this is where you increment level because in the other function it says it shouldn't change the function 
+			board[i] = nextCellValue();
+
+			if(gameState != GameState.PLAYING) {
+				System.out.println("You have decided to keep playing after a games is already won");
+
+			}
+			else setGameState(i); //This is where you check if anyobody won a game 
+
+		}
+
+		
 
 	}
 
