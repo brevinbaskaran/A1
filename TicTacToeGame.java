@@ -297,25 +297,54 @@ public class TicTacToeGame {
 
 		}
 
-		int diagonalStart = 0;
-		int iter1 = lines - sizeWin * columns;
-		int iter2 = columns - sizeWin;
-		int iter3 = columns+1 * sizeWin-1;
+		int verticalWinCounter = 0;
+		for (int i = 0 ; i < columns; i ++){
+			int verticalSearch = i + (columns * (lines-(sizeWin-1))); //sizeWin-1 because let says we have 3 as a the sizeWin you only have to search every two starting from vertical
+			int startingV = i;
+			while (startingV < (verticalSearch+1)) {
 
-		while (diagonalStart <=iter1) {
-			
-			for (int a = iter1; a < iter2; a++){
+				if ( CellValue.EMPTY != board[startingV]  && board[startingV]==board[startingV+columns] ){
+					verticalWinCounter++;
+					if (verticalWinCounter==sizeWin){
 
-				int b = a;
-				while (b < iter3) {
-					
-					b = b + columns + 1;
+					}
 				}
 
+				startingV = startingV + 1;
+
 			}
-			diagonalStart = diagonalStart + columns;
+
+
 
 		}
+
+		//int checkRows = lines-(sizeWin+1);
+
+
+
+		// int diagonalStart = 0;
+		// int iter1 = lines - sizeWin * columns;
+		// int iter2 = columns - sizeWin;
+		// int iter3 = columns+1 * sizeWin-1;
+
+		// while (diagonalStart <=iter1) {
+			
+		// 	for (int a = iter1; a < iter2; a++){
+
+		// 		int b = a;
+		// 		while (b < iter3) {
+
+		// 			if (board[b] == board[b+columns+1]){
+
+		// 			}
+					
+		// 			b = b + columns + 1;
+		// 		}
+
+		// 	}
+		// 	diagonalStart = diagonalStart + columns;
+
+		// }
 
 
 
