@@ -297,6 +297,28 @@ public class TicTacToeGame {
 
 		}
 
+		int diagonalStart = 0;
+		int iter1 = lines - sizeWin * columns;
+		int iter2 = columns - sizeWin;
+		int iter3 = columns+1 * sizeWin-1;
+
+		while (diagonalStart <=iter1) {
+			
+			for (int a = iter1; a < iter2; a++){
+
+				int b = a;
+				while (b < iter3) {
+					
+					b = b + columns + 1;
+				}
+
+			}
+			diagonalStart = diagonalStart + columns;
+
+		}
+
+
+
 	}
 
 
