@@ -325,7 +325,7 @@ public class TicTacToeGame {
 		for (int i =0; i < checkRows;i ++){
 			for (int j = 0; j < checkCol; j++){
 				for (int k =0; k <= sizeWin; k++){
-					if (board[(i * columns) + (k+1)] == board[((i+(k+1)) * columns) + (j-(k+1))] && CellValue.EMPTY != board[k]){
+					if (board[(i * columns) + (k+1)] == board[((i+(k+1)) * columns) + (j+(k+1))] && CellValue.EMPTY != board[k]){
 
 					}
 
