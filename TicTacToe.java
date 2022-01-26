@@ -50,12 +50,35 @@ public class TicTacToe{
         while(game.getGameState() == GameState.PLAYING) {
         	
 			// your code here
-			
+            if (game.getLevel() % 2 == 0){
+                System.out.println("X to play: ");
+            }
+            else {
+                System.out.println("O to play: ");
+            }
+
+            int cellIndex = Integer.parseInt(console.readLine());
+            cellIndex = cellIndex - 1; // need to decrease by one because index starts from 0 
+
+            int maxCells = (lines*columns)-1;
+
+            if (cellIndex < 0 || cellIndex > maxCells) System.out.println("The value should be between 1 and" + maxCells); //ensure user doesn't enter a index out of range
+            
+            
+            else if (game.valueAt(cellIndex) != CellValue.EMPTY) System.out.println("This cell has already been played"); //Ensure the cell is empty 
+            
+            else game.play(cellIndex); // play the game
+            
+
 			
         }
         System.out.println(game);
         System.out.println("Result: " + game.getGameState());
- 
+        if (game.getGameState().equals(GameState.XWIN)) System.out.println("X WINS!");
+        else if (game.getGameState().equals(GameState.OWIN)) System.out.println("O WINS!");
+        else if (game.getGameState().equals(GameState.DRAW)) System.out.println("DRAW"); 
+        
+        
 
     }
 
