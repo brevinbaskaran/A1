@@ -318,7 +318,21 @@ public class TicTacToeGame {
 
 		}
 
-		//int checkRows = lines-(sizeWin+1);
+		// top-right to - bottom-left
+		int checkRows = lines-(sizeWin+1);
+		int checkCol = columns-(sizeWin+1);
+
+		for (int i =0; i < checkRows;i ++){
+			for (int j = 0; j < checkCol; j++){
+				for (int k =0; k <= sizeWin; k++){
+					if (board[(i * columns) + (k+1)] == board[((i+(k+1)) * columns) + (j-(k+1))] && CellValue.EMPTY != board[k]){
+
+					}
+
+				}
+			}
+		}
+ 
 
 
 
