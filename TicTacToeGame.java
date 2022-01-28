@@ -288,9 +288,16 @@ public class TicTacToeGame {
 		int same = 0;
 		for ( int j = 0; j < rows.length; j++){
 			for (int k = 0; k < (rows[0].length)-1; k++){
-				if (rows[j][k] == rows[j][k+1]) {
+				if ((rows[j][k] == rows[j][k+1]) && (rows[j][k] != CellValue.EMPTY) &&  (rows[j][k+1] != CellValue.EMPTY)) {
 					same++;
-					if (same == 3) System.out.println("Winning State"); //fix this print statement to correct condition
+					if (same == 3){
+						if (rows[j][k] == CellValue.X){
+							gameState = GameState.XWIN;
+
+						}
+						else gameState = GameState.OWIN;
+					}
+					//fix this print statement to correct condition
 					//pretty sure its, if (getvalue % 2 == 0) GameState = XWIN; else OWIN
 				}
 			}
@@ -380,8 +387,61 @@ public class TicTacToeGame {
 	public String toString(){
 		// your code here
 		// use NEW_LINE defined above rather than \n
+
+		//logic => create a 2d list of the board with rows and then check value of each cell in row and append accordingly
+		// 			to the array colbreak and then convert array to string and return the string
+		String[] lineBreak = new String [(columns*3)+(columns-2)];
+		String[] colBreak = new String[columns];
 		
+		CellValue[][] tmpboard = new CellValue[lines][columns];
+		int cur = 0; // keeps track of the position we last started to append with
+		int tmp = 0; // keeps track of the row number we are apppending to
+		for (int i = 0; i < board.length; i++){
+			if (i % lines == 0){
+				
+				for (int a = cur; a < i; a++){
+					tmpboard[tmp][a] = board[a];
+				}
+				cur = i;
+				tmp++;
 
-	}
+			}
+		}
+		
+		// \/ \/ creates an array for the string representation of rows
+		for (int i = 0; i < colBreak.length - 1; i++){
+			 if (i == (colBreak.length-1) || i == 0){
+				 colBreak[i] = " ";
+			 }
+			 else {
+				 colBreak[i] = "|";
+				 colBreak[i+1]= " ";
+			 }
+		}
 
+		// \/ \/ creates an array for the string representation of lines between the rows
+		for (int i = 0; i < lineBreak.length; i++){
+			lineBreak[i] = "-";
+		}
+	
+
+		String[][] dispboard = new String[lines][]; // this is the board that we will convert to a string from an array of strings
+		
+		//in this loop we interate though the dispboard array and take our premade array colbreak and append String values of the cell state, then we append this list to dispboard as a row
+		for (int p = 0; p < dispboard.length; p++){
+			for (int q = cur; q < colBreak.length; q++){ 
+				if (!(colBreak[q] == "|")){
+					if (tmpboard[p][q] == CellValue.X){
+						colBreak[q] = " X ";
+					}
+					else if (tmpboard[p][q] == CellValue.O){
+						colBreak[q] = " O ";
+
+					}
+				}
+			}
+			
+			dispboard[p] = colBreak;
+		}
+}
 }
