@@ -91,13 +91,16 @@ public class TicTacToeGame {
 		this.sizeWin = sizeWin;
 		int numberOfboxes = columns * lines;
 		level = 0;
+
 	
-		//board = new CellValue[numberOfboxes];
+		board = new CellValue[numberOfboxes];
 		for (int i = 0; i < numberOfboxes; i++){
 			//board = new CellValue[numberOfboxes];
 			board[i] = CellValue.EMPTY;
 
 		}
+		gameState = GameState.PLAYING;
+
 
 
 	}
@@ -233,15 +236,11 @@ public class TicTacToeGame {
 			level++; //this is where you increment level because in the other function it says it shouldn't change the function 
 			board[i] = nextCellValue();
 
-			if(gameState != GameState.PLAYING) {
-				System.out.println("You have decided to keep playing after a games is already won");
+			if(gameState != GameState.PLAYING) System.out.println("You have decided to keep playing after a games is already won");
 
-			}
 			else setGameState(i); //This is where you check if anyobody won a game 
 
 		}
-
-		
 
 	}
 
@@ -267,6 +266,30 @@ public class TicTacToeGame {
 		// X, O, X, O, O  
 		// O, E, E, O, O 
 		// X, O, E, O, O 
+
+		if (VerticalWIn() == true || diagonalTopLeft() == true || diagonalTopRight() == true){
+
+			if (GameState.PLAYING == gameState) {
+
+				if (level % 2 == 0)  gameState = GameState.XWIN;
+				else gameState = GameState.OWIN;
+				
+
+			}
+
+			else {
+				boolean notDraw = false;
+				int numberOfboxes = columns * lines;
+				for (int i = 0; i < numberOfboxes; i++){
+					if ( board[i] != CellValue.EMPTY) notDraw = true;
+		
+				}
+				if (notDraw == false) gameState=GameState.DRAW;
+
+				
+			}
+
+		}
 
 		//code below makes a 2d list of the rows
 		CellValue[][] rows = new CellValue[lines][columns];
@@ -303,73 +326,75 @@ public class TicTacToeGame {
 			}
 
 		}
+		}
 
+		private boolean VerticalWIn() { 
 		int verticalWinCounter = 0;
 		for (int i = 0 ; i < columns; i ++){
-			int verticalSearch = i + (columns * (lines-(sizeWin-1))); //sizeWin-1 because let says we have 3 as a the sizeWin you only have to search every two starting from vertical
+			int verticalSearch = i + (columns * (lines-(sizeWin-1))); //sizeWin-1 because let says we have 3 as a the sizeWin you only have to search every two starting from vertical 
 			int startingV = i;
 			while (startingV < (verticalSearch+1)) {
 
 				if ( CellValue.EMPTY != board[startingV]  && board[startingV]==board[startingV+columns] ){
 					verticalWinCounter++;
 					if (verticalWinCounter==sizeWin){
+						return verticalWinCounter>=sizeWin;
 
 					}
+					return false;
 				}
 
 				startingV = startingV + 1;
 
 			}
 
-
-
 		}
+	}
 
-		// top-right to - bottom-left
+		private boolean diagonalTopLeft () {
+
+			// top-right to - bottom-left
 		int checkRows = lines-(sizeWin+1);
 		int checkCol = columns-(sizeWin+1);
+		int topLeftScore = 0;
 
-		for (int i =0; i < checkRows;i ++){
+		for (int i = 0; i < checkRows; i ++){
 			for (int j = 0; j < checkCol; j++){
-				for (int k =0; k <= sizeWin; k++){
+				for (int k = 0; k <= sizeWin; k++){
 					if (board[(i * columns) + (k+1)] == board[((i+(k+1)) * columns) + (j+(k+1))] && CellValue.EMPTY != board[k]){
+						topLeftScore++;
+						return topLeftScore>=sizeWin;
 
 					}
+					return false;
 
 				}
 			}
 		}
- 
 
+		}
 
+		private boolean diagonalTopRight () {
 
-		// int diagonalStart = 0;
-		// int iter1 = lines - sizeWin * columns;
-		// int iter2 = columns - sizeWin;
-		// int iter3 = columns+1 * sizeWin-1;
+			// top-right to - bottom-left
+		int checkRows = lines - (sizeWin+1);
+		int topRightScore = 0;
 
-		// while (diagonalStart <=iter1) {
-			
-		// 	for (int a = iter1; a < iter2; a++){
+		for (int i = 0; i < checkRows; i ++){
+			for (int j = (sizeWin-1); j < columns; j++){
+				for (int k =0; k <= sizeWin; k++){
+					if (board[(i * columns) + (k+1)] == board[((i+(k+1)) * columns) + (j+(k+1))] && CellValue.EMPTY != board[k]){
+						topRightScore++; 
+						return topRightScore>=sizeWin;
 
-		// 		int b = a;
-		// 		while (b < iter3) {
+					}
+					return false;
 
-		// 			if (board[b] == board[b+columns+1]){
+				}
+			}
+		}
 
-		// 			}
-					
-		// 			b = b + columns + 1;
-		// 		}
-
-		// 	}
-		// 	diagonalStart = diagonalStart + columns;
-
-		// }
-
-
-
-	}
+		}
 
 
 
