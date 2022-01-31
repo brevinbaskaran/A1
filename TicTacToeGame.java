@@ -443,5 +443,5 @@ public class TicTacToeGame {
 			
 			dispboard[p] = colBreak;
 		}
-}
+	}
 }
