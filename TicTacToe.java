@@ -36,7 +36,7 @@ public class TicTacToe{
                 columns = 3;
             }
         }
-        if (args.length = 3){
+        if (args.length == 3){
 			// The third argument will be ignored and 3 will be used
 			win=3; //for simplcity, we will only consider the case of 3 cells to win
         } 
@@ -48,14 +48,27 @@ public class TicTacToe{
         game = new TicTacToeGame(lines, columns,win);
 
         while(game.getGameState() == GameState.PLAYING) {
+           
+            System.out.println(game.toString());
+
         	
-			// your code here
+            if (game.getLevel() % 2 == 0) System.out.println("X to play: ");
+            
 			
-			
-        }
-        System.out.println(game);
+			else System.out.println("O to play: ");
+
+            int cellIndex = Integer.parseInt(console.readLine());
+            cellIndex = cellIndex - 1; // need to decrease by one because index starts from 0 
+            game.play(cellIndex);
+            game.setGameState(cellIndex);
+            }
+
+        
         System.out.println("Result: " + game.getGameState());
- 
+        if (game.getGameState().equals(GameState.XWIN)) System.out.println("X WINS!");
+        else if (game.getGameState().equals(GameState.OWIN)) System.out.println("O WINS!");
+        else if (game.getGameState().equals(GameState.OWIN)) System.out.println("O WINS!");
+      
 
     }
 
