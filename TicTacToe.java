@@ -49,7 +49,7 @@ public class TicTacToe{
 
         while(game.getGameState() == GameState.PLAYING) {
            
-            System.out.println(game.toString());
+            
 
         	
             if (game.getLevel() % 2 == 0) System.out.println("X to play: ");
@@ -59,7 +59,10 @@ public class TicTacToe{
 
             int cellIndex = Integer.parseInt(console.readLine());
             cellIndex = cellIndex - 1; // need to decrease by one because index starts from 0 
+            
+            
             game.play(cellIndex);
+            System.out.println(game.toString());
             game.setGameState(cellIndex);
             }
 
@@ -67,7 +70,7 @@ public class TicTacToe{
         System.out.println("Result: " + game.getGameState());
         if (game.getGameState().equals(GameState.XWIN)) System.out.println("X WINS!");
         else if (game.getGameState().equals(GameState.OWIN)) System.out.println("O WINS!");
-        else if (game.getGameState().equals(GameState.OWIN)) System.out.println("O WINS!");
+        else if (game.getGameState().equals(GameState.DRAW)) System.out.println("DRAW!");
       
 
     }
