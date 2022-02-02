@@ -297,10 +297,11 @@ public class TicTacToeGame {
 			}
 
 		} */
-		// a b c d e f g h i
+		
 
-	
-		// code below makes a 2d list of the rows
+	//   \/\/\ UNCOMMENT later
+
+		/* // code below makes a 2d list of the rows
 		CellValue[][] rows = new CellValue[lines][columns];
 		// keeps track of the position we last started to append with
 		int back = 0; // keeps track of the row number we are apppending to
@@ -366,9 +367,10 @@ public class TicTacToeGame {
 			}
 
 		}
-
+// uncomment above ^
+		 */
 		diagonalTopLeft();
-		diagonalTopRight();
+		//diagonalTopRight();
 	}
 
 	/* private boolean VerticalWIn() {
@@ -426,38 +428,67 @@ public class TicTacToeGame {
 
 		}
 		return false; */
-	
+
  
 	private void diagonalTopLeft() {
+		////1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+		//  diag: (1,6,11), (2,7,12), 
 
-		// top-right to - bottom-left
-		int checkRows = lines;
-		int checkCol = columns;
-		int topLeftScore = 0;
-
-		for (int i = 0; i < checkRows; i++) {
-			for (int j = 0; j < checkCol; j++) {
-				for (int k = 0; k <= sizeWin; k++) {
-					if (board[(i * columns) + (k + 1)] == board[((i + (k + 1)) * columns) + (j + (k + 2))]
-							&& CellValue.EMPTY != board[k]) {
-						topLeftScore++;
-						if (topLeftScore >= sizeWin) {
-							if (board[k] == CellValue.X) {
-								gameState = GameState.XWIN;
-							} else
-								gameState = GameState.OWIN;
-						}
-								
-
-					}
-
-				}
-			}
+		for (int i = 0; i < board.length; i++){
+			CellValue [] tmpcheck = new CellValue[Math.min(lines, columns)];
+			for ( int j)
 		}
-
+ 
 	}
 
-	private void diagonalTopRight() {
+
+		/* int diagonalLeft = 0;
+		for (int i = 0; i < (columns*lines) - diagonalLeft; i++) { 
+			diagonalLeft = 0;
+			for (int j = 0; j < lines; j++){
+				if (board[i] != board[i + diagonalLeft-1] || i + diagonalLeft -1 > board.length -1  ){
+					diagonalLeft++;
+				}
+				if (diagonalLeft >= sizeWin) {
+					if (board[diagonalLeft] == CellValue.X) {
+						gameState = GameState.XWIN;
+					} else
+						gameState = GameState.OWIN;
+						
+				}
+				
+			}
+ */
+		
+
+		// // top-right to - bottom-left
+		// int checkRows = lines - sizeWin+1;
+		// int checkCol = columns - sizeWin +1;
+		// int topLeftScore = 0;
+
+		// for (int i = 0; i < checkRows; i++) {
+		// 	for (int j = 0; j < checkCol; j++) {
+		// 		for (int k = 0; k <= sizeWin; k++) {
+		// 			if (board[(i * columns) + (k + 1)] == board[((i + (k + 1)) * columns) + (j + (k + 2))]
+		// 					&& CellValue.EMPTY != board[k]) {
+		// 				topLeftScore++;
+		// 				if (topLeftScore >= sizeWin) {
+		// 					if (board[k] == CellValue.X) {
+		// 						gameState = GameState.XWIN;
+		// 					} else
+		// 						gameState = GameState.OWIN;
+		// 				}
+								
+
+		// 			}
+
+		// 		}
+		// 	}
+		// }
+
+	
+
+	/* private void diagonalTopRight() {
 
 		// top-right to - bottom-left
 		int checkRows = lines - (sizeWin + 1);
@@ -481,7 +512,7 @@ public class TicTacToeGame {
 		}
 
 	}
-	} 
+	}  */
 
 	final String NEW_LINE = System.getProperty("line.separator");
 
