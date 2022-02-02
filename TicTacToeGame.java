@@ -299,9 +299,6 @@ public class TicTacToeGame {
 		} */
 		
 
-	//   \/\/\ UNCOMMENT later
-
-		/* // code below makes a 2d list of the rows
 		CellValue[][] rows = new CellValue[lines][columns];
 		// keeps track of the position we last started to append with
 		int back = 0; // keeps track of the row number we are apppending to
@@ -330,7 +327,7 @@ public class TicTacToeGame {
 
 		// code above ^^ makes a 2d list of the rows
 
-		int same = 0;
+		int same = 1;
 		for (int j = 0; j < rows.length; j++) {
 			for (int k = 0; k < (rows[0].length) - 1; k++) {
 				if ((rows[j][k] == rows[j][k + 1]) && (rows[j][k] != CellValue.EMPTY)
@@ -345,14 +342,15 @@ public class TicTacToeGame {
 					}
 					
 				}
+				else same = 1;
 			}
 
 		}
 
-		int s = 0;
-		for (int j = 0; j < rows.length -1; j++) {
-			for (int k = 0; k < (rows[0].length); k++) {
-				if ((rows[j][k] == rows[j+1][k]) && (rows[j][k] != CellValue.EMPTY)
+		/* int s = 1;
+		for (int j = 0; j < rows[0].length-1; j++) {
+			for (int k = 0; k < (rows.length); k++) {
+				if ((rows[j+1][k] == rows[j][k]) && (rows[j+1][k] != CellValue.EMPTY)
 						&& (rows[j+1][k] != CellValue.EMPTY)) {
 					s++;
 					if (s >= sizeWin) {
@@ -364,44 +362,45 @@ public class TicTacToeGame {
 					}
 					
 				}
+				else s = 1;
 			}
 
-		}
-// uncomment above ^
-		 */
+		} */
+
+		 
 		diagonalTopLeft();
 		//diagonalTopRight();
 	}
 
-	/* private boolean VerticalWIn() {
-		CellValue[][] rows = new CellValue[lines][columns];
-		// keeps track of the position we last started to append with
-		int back = 0; // keeps track of the row number we are apppending to
-		int cntr = 0;
-		int rowcntr = 0;
-		for (int i = 0; i < board.length; i++) {
-			if (i % columns == 0 && i != 0) {
-				cntr = 0;
-				for (int a = back; a < i; a++) {
-					rows[rowcntr][cntr] = board[a];
-					cntr++;
-				}
-				back = i;
-				rowcntr = rowcntr + 1;
+	//  private boolean VerticalWIn() {
+	// 	CellValue[][] rows = new CellValue[lines][columns];
+	// 	// keeps track of the position we last started to append with
+	// 	int back = 0; // keeps track of the row number we are apppending to
+	// 	int cntr = 0;
+	// 	int rowcntr = 0;
+	// 	for (int i = 0; i < board.length; i++) {
+	// 		if (i % columns == 0 && i != 0) {
+	// 			cntr = 0;
+	// 			for (int a = back; a < i; a++) {
+	// 				rows[rowcntr][cntr] = board[a];
+	// 				cntr++;
+	// 			}
+	// 			back = i;
+	// 			rowcntr = rowcntr + 1;
 
-			}
-			if (i == board.length - 1) {
-				cntr = 0;
-				for (int a = back; a <= i; a++) {
-					rows[rowcntr][cntr] = board[a];
-					cntr++;
-				}
+	// 		}
+	// 		if (i == board.length - 1) {
+	// 			cntr = 0;
+	// 			for (int a = back; a <= i; a++) {
+	// 				rows[rowcntr][cntr] = board[a];
+	// 				cntr++;
+	// 			}
 
-			}
-		}
+	// 		}
+	// 	}
 		
 
-		return false;
+	// 	return false;
 
 
 
@@ -428,18 +427,47 @@ public class TicTacToeGame {
 
 		}
 		return false; */
+	 //}
 
  
-	private void diagonalTopLeft() {
+	 private void diagonalTopLeft() {
 		////1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 		//  diag: (1,6,11), (2,7,12), 
+		
+		
+		for (int i = 0; i < board.length - columns - 1; i++){
+			CellValue [] tmpcheck = new CellValue[lines];
+			int k = 0;
+			for ( int j = i; j < board.length; j = j + columns + 1){
+				
+					tmpcheck[k] = board[j];
+					k++;
+			
 
-		for (int i = 0; i < board.length; i++){
-			CellValue [] tmpcheck = new CellValue[Math.min(lines, columns)];
-			for ( int j)
+			}
+
+			int x = 1;
+			for (int q = 0; q < tmpcheck.length -1; q++){
+				if (tmpcheck[q] == tmpcheck[q+1] && tmpcheck[q+1] != null && tmpcheck[q] != null){
+					x++;
+				}
+				else x = 1;
+				if ( x == sizeWin){
+					if ( tmpcheck[q] == CellValue.X) {
+						gameState = GameState.XWIN;
+					}
+					else if (tmpcheck[q] == CellValue.O){
+						gameState = GameState.OWIN;
+					}
+
+				}
+			}
+
+
+
 		}
  
-	}
+	} 
 
 
 		/* int diagonalLeft = 0;
