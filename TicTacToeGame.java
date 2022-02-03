@@ -266,25 +266,12 @@ public class TicTacToeGame {
 	 */
 
 	void setGameState(int index) {
-
 		// your code here
 		// X, O, X, O, O
 		// O, E, E, O, O
 		// X, O, E, O, O
 
-		/* if (VerticalWIn() == true) {
-
-			if (GameState.PLAYING == gameState) {
-
-				if (level % 2 == 0)
-					gameState = GameState.XWIN;
-				else
-					gameState = GameState.OWIN;
-
-			}
-
-			else {
-				boolean notDraw = false;
+		boolean notDraw = false;
 				int numberOfboxes = columns * lines;
 				for (int i = 0; i < numberOfboxes; i++) {
 					if (board[i] != CellValue.EMPTY)
@@ -294,9 +281,6 @@ public class TicTacToeGame {
 				if (notDraw == false)
 					gameState = GameState.DRAW;
 
-			}
-
-		} */
 		
 
 		CellValue[][] rows = new CellValue[lines][columns];
@@ -347,103 +331,47 @@ public class TicTacToeGame {
 
 		}
 
-		/* int s = 1;
-		for (int j = 0; j < rows[0].length-1; j++) {
-			for (int k = 0; k < (rows.length); k++) {
-				if ((rows[j+1][k] == rows[j][k]) && (rows[j+1][k] != CellValue.EMPTY)
-						&& (rows[j+1][k] != CellValue.EMPTY)) {
-					s++;
-					if (s >= sizeWin) {
-						if (rows[j][k] == CellValue.X) {
-							gameState = GameState.XWIN;
-						} else
-							gameState = GameState.OWIN;
-							
-					}
-					
-				}
-				else s = 1;
-			}
-
-		} */
-
-		 
 		diagonalTopLeft();
-		//diagonalTopRight();
-	}
-
-	//  private boolean VerticalWIn() {
-	// 	CellValue[][] rows = new CellValue[lines][columns];
-	// 	// keeps track of the position we last started to append with
-	// 	int back = 0; // keeps track of the row number we are apppending to
-	// 	int cntr = 0;
-	// 	int rowcntr = 0;
-	// 	for (int i = 0; i < board.length; i++) {
-	// 		if (i % columns == 0 && i != 0) {
-	// 			cntr = 0;
-	// 			for (int a = back; a < i; a++) {
-	// 				rows[rowcntr][cntr] = board[a];
-	// 				cntr++;
-	// 			}
-	// 			back = i;
-	// 			rowcntr = rowcntr + 1;
-
-	// 		}
-	// 		if (i == board.length - 1) {
-	// 			cntr = 0;
-	// 			for (int a = back; a <= i; a++) {
-	// 				rows[rowcntr][cntr] = board[a];
-	// 				cntr++;
-	// 			}
-
-	// 		}
-	// 	}
+		diagonalTopRight();
+	
 		
+	int position = 0;
+	int sameV = 1;
+	for ( int j = 0; j < rows[0].length; j++){
+		CellValue[] tmp  = new CellValue[lines];
+		for (int k = 0; k < (rows.length); k++){
+			tmp[position] = rows[k][j];
+			position++;
+			}
+		position = 0;
 
-	// 	return false;
-
-
-
-		/* int verticalWinCounter = 1;
-		for (int i = 0; i < columns; i++) {
-			int verticalSearch = i + (columns * (lines - (sizeWin - 1))); // sizeWin-1 because let says we have 3 as a
-																			// the sizeWin you only have to search every
-																			// two starting from vertical
-			int startingV = i;
-			while (startingV < (verticalSearch + 1)) {
-
-				if (CellValue.EMPTY != board[startingV] && board[startingV] == board[startingV + columns]) {
-					verticalWinCounter++;
-					if (verticalWinCounter == sizeWin) {
-						return verticalWinCounter >= sizeWin;
-
+		for (int p = 0; p < tmp.length-1; p++){
+			if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
+				sameV++;
+				if (sameV >= sizeWin){
+					if (tmp[p] ==  CellValue.X){
+						gameState = GameState.XWIN;
 					}
-					return false;
+					else gameState = GameState.OWIN;
 				}
 
-				startingV = startingV + 1;
-
 			}
-
+			else sameV = 1;
+	
 		}
-		return false; */
-	 //}
+
+	}
+}
 
  
 	 private void diagonalTopLeft() {
-		////1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-		//  diag: (1,6,11), (2,7,12), 
-		
 		
 		for (int i = 0; i < board.length - columns - 1; i++){
 			CellValue [] tmpcheck = new CellValue[lines];
 			int k = 0;
 			for ( int j = i; j < board.length; j = j + columns + 1){
-				
 					tmpcheck[k] = board[j];
 					k++;
-			
-
 			}
 
 			int x = 1;
@@ -469,78 +397,38 @@ public class TicTacToeGame {
  
 	} 
 
-
-		/* int diagonalLeft = 0;
-		for (int i = 0; i < (columns*lines) - diagonalLeft; i++) { 
-			diagonalLeft = 0;
-			for (int j = 0; j < lines; j++){
-				if (board[i] != board[i + diagonalLeft-1] || i + diagonalLeft -1 > board.length -1  ){
-					diagonalLeft++;
-				}
-				if (diagonalLeft >= sizeWin) {
-					if (board[diagonalLeft] == CellValue.X) {
-						gameState = GameState.XWIN;
-					} else
-						gameState = GameState.OWIN;
-						
-				}
-				
-			}
- */
-		
-
-		// // top-right to - bottom-left
-		// int checkRows = lines - sizeWin+1;
-		// int checkCol = columns - sizeWin +1;
-		// int topLeftScore = 0;
-
-		// for (int i = 0; i < checkRows; i++) {
-		// 	for (int j = 0; j < checkCol; j++) {
-		// 		for (int k = 0; k <= sizeWin; k++) {
-		// 			if (board[(i * columns) + (k + 1)] == board[((i + (k + 1)) * columns) + (j + (k + 2))]
-		// 					&& CellValue.EMPTY != board[k]) {
-		// 				topLeftScore++;
-		// 				if (topLeftScore >= sizeWin) {
-		// 					if (board[k] == CellValue.X) {
-		// 						gameState = GameState.XWIN;
-		// 					} else
-		// 						gameState = GameState.OWIN;
-		// 				}
-								
-
-		// 			}
-
-		// 		}
-		// 	}
-		// }
-
-	
-
-	/* private void diagonalTopRight() {
+	private void diagonalTopRight() {
 
 		// top-right to - bottom-left
-		int checkRows = lines - (sizeWin + 1);
-		int topRightScore = 0;
+		for (int i = board.length - lines; i > 0 ; i--){
+			CellValue [] tmpcheck = new CellValue[lines];
+			int k = 0;
+			for ( int j = i; j >0; j = j  - lines){
+					tmpcheck[k] = board[j];
+					k++;
+			}
 
-		for (int i = 0; i < checkRows; i++) {
-			for (int j = (sizeWin - 1); j < columns; j++) {
-				for (int k = 0; k <= sizeWin; k++) {
-					if (board[(i * columns) + (k + 1)] == board[((i + (k + 1)) * columns) + (j + (k -2))]
-							&& CellValue.EMPTY != board[k]) {
-						topRightScore++;
-						if (topRightScore >= sizeWin) {
-							if (board[k] == CellValue.X) {
-								gameState = GameState.XWIN;
-							} else
-								gameState = GameState.OWIN;
+			int x = 1;
+			for (int q = 0; q < tmpcheck.length -1; q++){
+				if (tmpcheck[q] == tmpcheck[q+1] && tmpcheck[q+1] != null && tmpcheck[q] != null){
+					x++;
+				}
+				else x = 1;
+				if ( x == sizeWin){
+					if ( tmpcheck[q] == CellValue.X) {
+						gameState = GameState.XWIN;
+					}
+					else if (tmpcheck[q] == CellValue.O){
+						gameState = GameState.OWIN;
 					}
 
 				}
 			}
-		}
 
-	}
-	}  */
+
+
+		}
+	} 
 
 	final String NEW_LINE = System.getProperty("line.separator");
 
