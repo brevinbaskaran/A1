@@ -339,34 +339,34 @@ public class TicTacToeGame {
 		diagonalTopRight();
 	
 		
-	// int position = 0;
-	// int sameV = 1;
-	// for ( int j = 0; j < rows[0].length; j++){
-	// 	CellValue[] tmp  = new CellValue[lines];
-	// 	for (int k = 0; k < (rows.length); k++){
-	// 		tmp[position] = rows[k][j];
-	// 		position++;
-	// 		}
-	// 	position = 0;
+	int position = 0;
+	int sameV = 1;
+	for ( int j = 0; j < rows[0].length; j++){
+		CellValue[] tmp  = new CellValue[lines];
+		for (int k = 0; k < (rows.length); k++){
+			tmp[position] = rows[k][j];
+			position++;
+			}
+		position = 0;
 
-	// 	for (int p = 0; p < tmp.length-1; p++){
-	// 		if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
-	// 			sameV++;
-	// 			if (sameV >= sizeWin){
-	// 				if (gameState == GameState.PLAYING) { 
-	// 				if (tmp[p] ==  CellValue.X){
-	// 					gameState = GameState.XWIN;
-	// 				}
-	// 				else gameState = GameState.OWIN;
-	// 			}
-	// 		}
+		for (int p = 0; p < tmp.length-1; p++){
+			if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
+				sameV++;
+				if (sameV >= sizeWin){
+					if (gameState == GameState.PLAYING) { 
+					if (tmp[p] ==  CellValue.X){
+						gameState = GameState.XWIN;
+					}
+					else gameState = GameState.OWIN;
+				}
+			}
 
-	// 		}
-	// 		else sameV = 1;
+			}
+			else sameV = 1;
 	
-	// 	}
+		}
 
-	// }
+	}
 }
 
  
