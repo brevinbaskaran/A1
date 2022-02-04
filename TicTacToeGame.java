@@ -271,15 +271,14 @@ public class TicTacToeGame {
 		// O, E, E, O, O
 		// X, O, E, O, O
 
-				boolean notDraw = false;
+				boolean draw = true;
 				int numberOfboxes = columns * lines;
 				for (int i = 0; i < numberOfboxes; i++) {
 					if (board[i] != CellValue.EMPTY)
-						notDraw = true;
+						draw = false;
 
 				}
-				if (notDraw == false)
-					gameState = GameState.DRAW;
+				if (draw == true) gameState = GameState.DRAW;
 
 		
 
@@ -349,11 +348,13 @@ public class TicTacToeGame {
 			if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
 				sameV++;
 				if (sameV >= sizeWin){
+					if (gameState == GameState.PLAYING) { 
 					if (tmp[p] ==  CellValue.X){
 						gameState = GameState.XWIN;
 					}
 					else gameState = GameState.OWIN;
 				}
+			}
 
 			}
 			else sameV = 1;
@@ -381,12 +382,14 @@ public class TicTacToeGame {
 				}
 				else x = 1;
 				if ( x == sizeWin){
+					if (gameState == GameState.PLAYING) { 
 					if ( tmpcheck[q] == CellValue.X) {
 						gameState = GameState.XWIN;
 					}
 					else if (tmpcheck[q] == CellValue.O){
 						gameState = GameState.OWIN;
 					}
+				}
 
 				}
 			}
@@ -421,6 +424,7 @@ public class TicTacToeGame {
 				}
 				else x = 1;
 				if ( x == sizeWin){
+					if (gameState == GameState.PLAYING) { 
 					if ( tmpcheck[q] == CellValue.X) {
 						gameState = GameState.XWIN;
 					}
@@ -429,6 +433,7 @@ public class TicTacToeGame {
 					}
 
 				}
+			}
 			}
 			counter =0;
 
