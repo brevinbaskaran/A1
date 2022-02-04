@@ -1,4 +1,3 @@
-import javafx.scene.control.Cell;
 
 /**
  * The class <b>TicTacToeGame</b> is the
@@ -174,7 +173,7 @@ public class TicTacToeGame {
 		// with x
 		// based on info level starts at 0, so odd -> O's turn and even -> X's turn
 
-		if (level % 2 == 0) { // if the turn counter (level) is even then O is the next turn so O is returned
+		if (level % 2 == 1) { // if the turn counter (level) is even then O is the next turn so O is returned
 
 			// level ++; // not sure abt this yet --> CHECK
 			return CellValue.O;
@@ -200,10 +199,10 @@ public class TicTacToeGame {
 	public CellValue valueAt(int i) {
 		int numberOfCells = lines * columns;
 
-		if (i < 0 || i > numberOfCells) {
-			throw new IllegalArgumentException("Position" + i + " not in board");
-		} else
-			return board[i];
+		if (i < 0 || i >= numberOfCells) {
+			throw new IllegalArgumentException("Position" + (i+1) + " not in board");
+		}
+		return board[i];
 	}
 
 	/**
@@ -230,25 +229,27 @@ public class TicTacToeGame {
 		int numberOfCells = lines * columns;
 
 		CellValue tmpstate = valueAt(i);
-		if (i < 0 || i > numberOfCells)
+		if (i < 0 || i >= numberOfCells)
 			System.out.println("Position" + (i+1) + " not in boards");
 		if (tmpstate != CellValue.EMPTY)
 			System.out.println("Position" + (i+1) + " is already filled");
 
 		if (tmpstate == CellValue.EMPTY) {
-			level++; // this is where you increment level because in the other function it says it
-						// shouldn't change the function
-			board[i] = nextCellValue();
+            board[i] = nextCellValue();
+            level++; // this is where you increment level because in the other function it says it
+            // shouldn't change the function
 
-			if (gameState != GameState.PLAYING)
-				System.out.println("You have decided to keep playing after a games is already won");
+        }
 
-			else
-				setGameState(i); // This is where you check if anyobody won a game
+		if (gameState != GameState.PLAYING)
+		    System.out.println("You have decided to keep playing after a games is already won");
+
+		else
+		    setGameState(i); // This is where you check if anyobody won a game
 
 		}
 
-	}
+
 
 	/**
 	 * A helper method which updates the gameState variable
