@@ -271,7 +271,7 @@ public class TicTacToeGame {
 		// O, E, E, O, O
 		// X, O, E, O, O
 
-		boolean notDraw = false;
+				boolean notDraw = false;
 				int numberOfboxes = columns * lines;
 				for (int i = 0; i < numberOfboxes; i++) {
 					if (board[i] != CellValue.EMPTY)
@@ -399,15 +399,21 @@ public class TicTacToeGame {
 
 	private void diagonalTopRight() {
 
-		// top-right to - bottom-left
-		for (int i = board.length - lines; i > 0 ; i--){
-			CellValue [] tmpcheck = new CellValue[lines];
-			int k = 0;
-			for ( int j = i; j >0; j = j  - lines){
+		int counter =0;
+		for (int i = board.length-1; i >0; i--){
+			CellValue [] tmpcheck = new CellValue [lines];
+			int k =0;
+
+			for (int j = i; j > 0; j = j - columns +1){
+				if (j >= 0 && (j %columns !=0) || counter == 0){
+					counter++;
 					tmpcheck[k] = board[j];
 					k++;
-			}
 
+
+				}
+				else break;
+			}
 			int x = 1;
 			for (int q = 0; q < tmpcheck.length -1; q++){
 				if (tmpcheck[q] == tmpcheck[q+1] && tmpcheck[q+1] != null && tmpcheck[q] != null){
@@ -424,11 +430,39 @@ public class TicTacToeGame {
 
 				}
 			}
-
-
+			counter =0;
 
 		}
-	} 
+
+	}
+
+
+	//	int scoreDi = 0;
+	// 	for (int i =0; i < lines - sizeWin+1; i++){
+	// 		for (int j =sizeWin-1; j < columns; j++){
+	// 			int first = i * columns + j;
+	// 			for (int k =1; k < sizeWin; k++){
+	// 				if (board [((i+k)*columns + (j-k))] == board[first] && board [((i+k)*columns + (j-k))] != CellValue.EMPTY && board[first] != CellValue.EMPTY){
+	// 					scoreDi++;
+	// 					if ( scoreDi == sizeWin){
+	// 						if ( board[ i * columns + j] == CellValue.X) {
+	// 							gameState = GameState.XWIN;
+	// 						}
+	// 						else if (board[ i * columns + j] == CellValue.O){
+	// 							gameState = GameState.OWIN;
+	// 						}
+						
+	// 					}
+
+	// 				}
+	// 				else {
+	// 					break;
+	// 				}
+	// 		}
+	// 	}
+	
+	// }
+
 
 	final String NEW_LINE = System.getProperty("line.separator");
 
