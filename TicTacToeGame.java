@@ -231,9 +231,9 @@ public class TicTacToeGame {
 
 		CellValue tmpstate = valueAt(i);
 		if (i < 0 || i > numberOfCells)
-			System.out.println("Position" + i + " not in boards");
+			System.out.println("Position" + (i+1) + " not in boards");
 		if (tmpstate != CellValue.EMPTY)
-			System.out.println("Position" + i + " is already filled");
+			System.out.println("Position" + (i+1) + " is already filled");
 
 		if (tmpstate == CellValue.EMPTY) {
 			level++; // this is where you increment level because in the other function it says it
@@ -271,17 +271,22 @@ public class TicTacToeGame {
 		// O, E, E, O, O
 		// X, O, E, O, O
 
-				boolean draw = true;
-				int numberOfboxes = columns * lines;
-				for (int i = 0; i < numberOfboxes; i++) {
-					if (board[i] != CellValue.EMPTY)
-						draw = false;
+				// boolean draw = true;
+				// int numberOfboxes = columns * lines;
+				// for (int i = 0; i < numberOfboxes; i++) {
+				// 	if (board[i] != CellValue.EMPTY)
+				// 		draw = false;
 
-				}
-				if (draw == true) gameState = GameState.DRAW;
+				// }
+				// if (draw == true) gameState = GameState.DRAW;
 
 		
-
+		if (level == lines*columns){
+			gameState = GameState.DRAW;
+		}
+		else {
+			gameState = gameState.PLAYING;
+		}
 		CellValue[][] rows = new CellValue[lines][columns];
 		// keeps track of the position we last started to append with
 		int back = 0; // keeps track of the row number we are apppending to
@@ -334,34 +339,34 @@ public class TicTacToeGame {
 		diagonalTopRight();
 	
 		
-	int position = 0;
-	int sameV = 1;
-	for ( int j = 0; j < rows[0].length; j++){
-		CellValue[] tmp  = new CellValue[lines];
-		for (int k = 0; k < (rows.length); k++){
-			tmp[position] = rows[k][j];
-			position++;
-			}
-		position = 0;
+	// int position = 0;
+	// int sameV = 1;
+	// for ( int j = 0; j < rows[0].length; j++){
+	// 	CellValue[] tmp  = new CellValue[lines];
+	// 	for (int k = 0; k < (rows.length); k++){
+	// 		tmp[position] = rows[k][j];
+	// 		position++;
+	// 		}
+	// 	position = 0;
 
-		for (int p = 0; p < tmp.length-1; p++){
-			if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
-				sameV++;
-				if (sameV >= sizeWin){
-					if (gameState == GameState.PLAYING) { 
-					if (tmp[p] ==  CellValue.X){
-						gameState = GameState.XWIN;
-					}
-					else gameState = GameState.OWIN;
-				}
-			}
+	// 	for (int p = 0; p < tmp.length-1; p++){
+	// 		if (tmp[p] == tmp[p+1] && tmp[p] != CellValue.EMPTY && tmp[p+1] != CellValue.EMPTY){
+	// 			sameV++;
+	// 			if (sameV >= sizeWin){
+	// 				if (gameState == GameState.PLAYING) { 
+	// 				if (tmp[p] ==  CellValue.X){
+	// 					gameState = GameState.XWIN;
+	// 				}
+	// 				else gameState = GameState.OWIN;
+	// 			}
+	// 		}
 
-			}
-			else sameV = 1;
+	// 		}
+	// 		else sameV = 1;
 	
-		}
+	// 	}
 
-	}
+	// }
 }
 
  
