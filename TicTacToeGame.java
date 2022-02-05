@@ -272,15 +272,6 @@ public class TicTacToeGame {
 		// O, E, E, O, O
 		// X, O, E, O, O
 
-				// boolean draw = true;
-				// int numberOfboxes = columns * lines;
-				// for (int i = 0; i < numberOfboxes; i++) {
-				// 	if (board[i] != CellValue.EMPTY)
-				// 		draw = false;
-
-				// }
-				// if (draw == true) gameState = GameState.DRAW;
-
 		
 		if (level == lines*columns){
 			gameState = GameState.DRAW;
@@ -289,9 +280,9 @@ public class TicTacToeGame {
 			gameState = gameState.PLAYING;
 		}
 		CellValue[][] rows = new CellValue[lines][columns];
-		// keeps track of the position we last started to append with
-		int back = 0; // keeps track of the row number we are apppending to
-		int cntr = 0;
+		
+		int back = 0; // keeps track of the position we last started to append with
+		int cntr = 0; // keeps track of the row number we are apppending to
 		int rowcntr = 0;
 		for (int i = 0; i < board.length; i++) {
 			if (i % columns == 0 && i != 0) {
@@ -316,18 +307,23 @@ public class TicTacToeGame {
 
 		// code above ^^ makes a 2d list of the rows
 
-		int same = 1;
+		
 		for (int j = 0; j < rows.length; j++) {
+			int same = 1;
+			CellValue checker;
 			for (int k = 0; k < (rows[0].length) - 1; k++) {
-				if ((rows[j][k] == rows[j][k + 1]) && (rows[j][k] != CellValue.EMPTY)
-						&& (rows[j][k + 1] != CellValue.EMPTY)) {
+				if ((rows[j][k] == rows[j][k + 1]) && (rows[j][k] != CellValue.EMPTY) && (rows[j][k + 1] != CellValue.EMPTY)) {
+						
 					same++;
+					checker = rows[j][k];
 					if (same >= sizeWin) {
-						if (rows[j][k] == CellValue.X) {
-							gameState = GameState.XWIN;
-
-						} else
+						if (checker == CellValue.O) {
 							gameState = GameState.OWIN;
+
+						} 
+						else if (checker == CellValue.X){
+							gameState = GameState.XWIN;
+							}
 					}
 					
 				}
@@ -335,6 +331,7 @@ public class TicTacToeGame {
 			}
 
 		}
+		
 
 		diagonalTopLeft();
 		diagonalTopRight();
@@ -370,7 +367,12 @@ public class TicTacToeGame {
 	}
 }
 
- 
+	/**
+	 * Method diagonalTopLeft
+	 * A helper method which checks if there is a diagonal win from the left to bottom right representation of the array. 
+	 * Used 1D array to iterate through the slope of the ID array and when diagonal is detected and declares winner. 
+	 *
+	 */
 	 private void diagonalTopLeft() {
 		
 		for (int i = 0; i < board.length - columns - 1; i++){
@@ -405,7 +407,13 @@ public class TicTacToeGame {
 		}
  
 	} 
-
+	
+	/**
+	 * This is a helper method to determine a diago
+	 *
+	 * 
+	 *         String representation of the game
+	 */
 	private void diagonalTopRight() {
 
 		int counter =0;
@@ -416,7 +424,7 @@ public class TicTacToeGame {
 			for (int j = i; j > 0; j = j - columns +1){
 				if (j >= 0 && (j %columns !=0) || counter == 0){
 					counter++;
-					tmpcheck[k] = board[j];
+					tmpcheck[k] = board[j]; 
 					k++;
 
 
@@ -445,34 +453,10 @@ public class TicTacToeGame {
 
 		}
 
-	}
+	} 
 
-
-	//	int scoreDi = 0;
-	// 	for (int i =0; i < lines - sizeWin+1; i++){
-	// 		for (int j =sizeWin-1; j < columns; j++){
-	// 			int first = i * columns + j;
-	// 			for (int k =1; k < sizeWin; k++){
-	// 				if (board [((i+k)*columns + (j-k))] == board[first] && board [((i+k)*columns + (j-k))] != CellValue.EMPTY && board[first] != CellValue.EMPTY){
-	// 					scoreDi++;
-	// 					if ( scoreDi == sizeWin){
-	// 						if ( board[ i * columns + j] == CellValue.X) {
-	// 							gameState = GameState.XWIN;
-	// 						}
-	// 						else if (board[ i * columns + j] == CellValue.O){
-	// 							gameState = GameState.OWIN;
-	// 						}
-						
-	// 					}
-
-	// 				}
-	// 				else {
-	// 					break;
-	// 				}
-	// 		}
-	// 	}
 	
-	// }
+	
 
 
 	final String NEW_LINE = System.getProperty("line.separator");
@@ -496,12 +480,7 @@ public class TicTacToeGame {
 		
 
 		while (counter < lines){
-			/* if (counter != 0){
-				for (int i = 0; i < columns; i++){
-					str = str + "---";
-				}
-				str = str + NEW_LINE;
-			} */
+
 			for (int r = 0; r < columns; r++){
 				if (board[counter*columns + r] == CellValue.EMPTY){
 					str = str + "   ";
