@@ -409,7 +409,7 @@ public class TicTacToeGame {
 	} 
 	
 	/**
-	 * This is a helper method to determine a diagonal
+	 * This is a helper method to determine a diagonal win. This wi
 	 *
 	 * 
 	 *         String representation of the game
