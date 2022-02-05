@@ -16,10 +16,10 @@ public class StudentInfo {
     public static void display() {
 
         System.out.println("************************************************************");
-        System.out.println("*Brevin Baskaran and Saurav Gurdu                          *");
-        System.out.println("* id = 30023129 and                                                           *");
-        System.out.println("* Course: ITI 1221 - A                                     *");
-        System.out.println("* Assignment 2                                             *");
+        System.out.println("*          Brevin Baskaran and Saurav Guduru               *");
+        System.out.println("*            id = 30023129 and 300234999                   *");
+        System.out.println("*                Course: ITI 1221 - A                      *");
+        System.out.println("*                    Assignment 1                          *");
         System.out.println("************************************************************");
         System.out.println();
 
